@@ -7,13 +7,14 @@ This project is an example of Live Project of DevOps where automation is the key
 ![PetClinicApp](images/PetClinicApp.png)
 
 
-## Solution Diagram
+## CI/CD Architecture Diagram
 
 ![capstone](images/capstone.png)
 
 
 
 ## Advantages of  Microservices?
+
 
 __Isolation of crashes:__ Even the best engineering organizations can and do have fatal crashes in production. In addition to following all the standard best practices for handling crashes gracefully, one approach that can limit the impact of such crashes is building microservices. Good microservice architecture means that if one micro piece of your service is crashing then only that part of your service will go down. The rest of your service can continue to work properly.
 
@@ -36,16 +37,21 @@ This is the build process that you can follow to manually compile and run the ap
         java -jar target/spring-petclinic-rest-pet-1.5.2.RELEASE.jar
 ```
 
-** Do remember you have to individually build every single microservice, above code only shows you how to compile one microservice.
-
 You can then access petclinic here: http://localhost:8080/
 
-### Notes
+** Do remember you have to individually build every single microservice, above code only shows you how to compile one microservice. **
 
-** Do not run the builds against this repository, you should upload the code to your own github or Bitbucket repository. One important thing to note here is that each microservice should have their individual repository, else you will not be able to deploy microservices independently.
+### Notes and instructions
+
+1. Do not run the builds against this repository, you should upload the code to your own github or Bitbucket repository. **
+2. One important thing to note here is that each microservice should have their individual repository, else you will not be able to deploy microservices independently.
+3. Make a note of the toolset/ toolchain that is being used in this project as per the CI/CD Architecture Diagram.
+4. To create a VPC using Terraform, you can consult below link:
+https://github.com/terraform-aws-modules/terraform-aws-vpc/tree/v2.21.0/examples/vpc-separate-private-route-tables
 
 ### Tips
-1. Make sure your Jenkins server is your Ansible Control Node and Teraform is also configured on the same server.
+
+1. Make sure your Jenkins server is your Ansible Control Node and Terraform is also configured on the same server.
 2. Sample Dockerfile
 
 ```
@@ -55,3 +61,14 @@ You can then access petclinic here: http://localhost:8080/
 	COPY ${JAR_FILE} /app.jar
 	CMD ["java", "-jar", "/app.jar"]
 ```
+
+## Deliverables
+
+1. Jenkinsfile that you wrote for the pipeline.
+2. Terraform templates.
+3. Dockerfile.
+4. Ansible Playbooks/ Roles.
+5. A short writeup on how the pipeline works.
+6. Any custom scripts if any used.
+
+Alternatively, you can share your Git repository with us.
