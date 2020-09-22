@@ -43,7 +43,7 @@ You can then access petclinic here: http://localhost:8080/
 
 ### Notes and instructions
 
-1. Do not run the builds against this repository, you should upload the code to your own github or Bitbucket repository. **
+1. Do not run the builds against this repository, you should upload the code to your own github or Bitbucket repository.
 2. One important thing to note here is that each microservice should have their individual repository, else you will not be able to deploy microservices independently.
 3. Make a note of the toolset/ toolchain that is being used in this project as per the CI/CD Architecture Diagram.
 4. To create a VPC using Terraform, you can consult below link:
