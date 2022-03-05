@@ -1,0 +1,33 @@
+- name: CREATING Directory
+  file:
+    path: "{{ MAKE_DIR }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  register: mkdir_result
+- debug: msg="{{ mkdir_result }}"
+
+
+- name: Copy Compose file to Target
+  copy:
+    src: "{{ COMPOSE_FILE }}" 
+    dest: "{{ MAKE_DIR }}"
+    owner: root
+    group: root
+    mode: 0755
+  register: result
+- debug: msg="{{ result }}"
+
+
+- name: Making down all container if any
+  shell: /usr/local/bin/docker-compose -f "{{ MAKE_DIR }}"/"{{ COMPOSE_FILE }}" down
+  register: down_result
+- debug: msg="{{ down_result }}"
+
+
+- name: Run the docker-compose
+  shell: /usr/local/bin/docker-compose -f "{{ MAKE_DIR }}"/"{{ COMPOSE_FILE }}" up -d 
+  register: compose_result
+- debug: msg="{{ compose_result }}"
+

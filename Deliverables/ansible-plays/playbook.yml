@@ -1,0 +1,20 @@
+- name: Install docker and docker-compose
+  hosts: docker
+  serial: 1
+  max_fail_percentage: 10
+  gather_facts: false
+  become: yes
+  roles: 
+    - { role: docker }
+
+- name: Run Docker Containers With compose
+  hosts: docker
+  serial: 1
+  max_fail_percentage: 10
+  gather_facts: false
+  become: yes
+  vars_files:
+  - vars.yml
+  roles:
+  - { role: swarm }
+
