@@ -1,20 +1,18 @@
 - name: Install docker and docker-compose
-  hosts: all
+  hosts: docker
   serial: 1
   max_fail_percentage: 10
   gather_facts: false
-  remote_user: ubuntu
   become: yes
   roles: 
     - { role: docker }
 
 - name: Run Docker Containers With compose
-  hosts: all
+  hosts: docker
   serial: 1
   max_fail_percentage: 10
   gather_facts: false
   become: yes
-  remote_user: ubuntu
   vars_files:
   - vars.yml
   roles:

@@ -1,5 +1,4 @@
 variable "region"  {
-
    type = string
    default = "ap-southeast-1"
 }
@@ -14,7 +13,6 @@ variable "vpc_cidr" {
 variable "environment" {
      type = string
      default = "PetClinic"
-
 }
 
 
@@ -23,7 +21,6 @@ variable "availability_zones" {
       type  = list(string)
       default = ["ap-southeast-1a", "ap-southeast-1b", "ap-southeast-1c"]
 }
-
 
 variable "public_subnets_cidr" {
        type  = list(string)
@@ -51,10 +48,9 @@ variable "redshift_subnets_cidr" {
 
 }
 
-
-
 variable "ami_id" {
    type = string
+   default = "ami-07315f74f3fa6a5a3" 
 }
 
 variable "instance_name" {
@@ -102,7 +98,6 @@ variable "keypair" {
   type  = string
 }
   
-
 variable "security_group_petclinic" {
    default = "sg_petclinic"
     type  = string

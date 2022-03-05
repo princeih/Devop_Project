@@ -1,0 +1,37 @@
+version: '2'
+services:
+  spring-petclinic-rest-visit:
+    image: swagatam04/spring-petclinic-rest-visit:latest
+    cpu_shares: 100
+    mem_limit: 524288000
+    ports:
+      - "8090:8080"
+  spring-petclinic-rest-vet:
+    image: swagatam04/spring-petclinic-rest-vet:latest
+    cpu_shares: 100
+    mem_limit: 524288000
+    ports:
+      - "8091:8080"
+  spring-petclinic-rest-system:
+    image: swagatam04/spring-petclinic-rest-system:latest
+    cpu_shares: 100
+    mem_limit: 524288000
+    ports:
+      - "8092:8080"
+  spring-petclinic-rest-pet:
+    image: swagatam04/spring-petclinic-rest-pet:latest
+    cpu_shares: 100
+    mem_limit: 524288000
+    ports:
+      - "8093:8080"
+  spring-petclinic-rest-owner:
+    image: swagatam04/spring-petclinic-rest-owner:latest
+    cpu_shares: 100
+    mem_limit: 524288000
+    ports:
+      - "8094:8080"
+
+
+
+
+
