@@ -21,3 +21,4 @@ _book
 .jenkins/
 .*/
 !.gitignore
+inventory.ini
