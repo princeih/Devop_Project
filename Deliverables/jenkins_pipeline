@@ -1,0 +1,69 @@
+pipeline{
+    agent any
+    tools {
+        terraform 'terraform-11'
+    }
+    environment {
+    	AWS_ACCESS_KEY_ID = 'AKIARH2JOFPH5ZSZN3CS'
+    	AWS_SECRET_ACCESS_KEY = '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'
+    	AWS_REGION = 'ap-southeast-1'
+    	TF_FOLDER = '/var/lib/jenkins/workspace/terraform-ansible-prov-conf/Deliverables/vpc_ec2_terraform/'
+    	ANS_FOLDER = '/var/lib/jenkins/workspace/terraform-ansible-prov-conf/Deliverables/ansible-plays/'
+    }
+    stages{
+        stage('Git checkout'){
+            steps{
+                git credentialsId: 'debasis-gif1', url: 'https://github.com/debasis-gif/devops-training-project.git'
+            }
+        }
+        stage('Terraform - Env Variables Access & Secret Keys:'){
+            steps{
+             	echo env.AWS_ACCESS_KEY_ID
+            	echo env.AWS_SECRET_ACCESS_KEY
+            	echo env.AWS_REGION
+            }
+        }
+        stage('Terraform Init:'){
+            steps{
+                dir(env.TF_FOLDER){
+                    echo env.TF_FOLDER
+                    sh 'terraform init'
+                }
+            }
+        }
+        stage('Terraform Apply:'){
+            steps{
+                dir(env.TF_FOLDER){
+                    echo env.TF_FOLDER
+                    sh 'terraform apply --auto-approve'
+                }
+            }
+        }
+        stage('Dynamic Inventory'){
+            steps{
+                dir(env.TF_FOLDER){
+                     echo env.TF_FOLDER
+                     sh  './dynamic_inventory.sh'
+                }
+            }
+        }
+        stage('Ansible Init:'){
+            steps{
+                script{
+            		    def ansHome = tool name: 'ansible2'
+            		    env.PATH = "${ansHome}:${env.PATH}"
+            		    sh 'ansible --version'
+                }
+            }
+        }
+        stage('======= Execute Ansible Playbook ======='){
+            steps{
+                dir(env.ANS_FOLDER){
+                    echo env.ANS_FOLDER
+                    //ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'inventory.ini', playbook: 'playbook.yml'
+                    sh 'ansible-playbook playbook.yml -i inventory.ini --user ubuntu'
+                }
+            }
+        }
+    }
+}
