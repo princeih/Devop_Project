@@ -4,7 +4,7 @@ ANS=/var/lib/jenkins/workspace/terraform-ansible-prov-conf/Deliverables/ansible-
 echo 'creating inventory.ini...' > $ANS/inventory.ini
 cat <<EOF > $ANS/inventory.ini
 [all:vars]
-ansible_ssh_user=ubuntu
+ansible_ssh_user=jenkins
 ansible_ssh_private_key_file=~/.ssh/spring-petclinic.pem
 ansible_connection=ssh
 ansible_user=ubuntu
