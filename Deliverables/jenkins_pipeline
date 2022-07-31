@@ -13,7 +13,7 @@ pipeline{
     stages{
         stage('Git checkout'){
             steps{
-                git credentialsId: 'debasis-gif1', url: 'https://github.com/debasis-gif/devops-training-project.git'
+                git url: 'https://github.com/debasis-gif/devops-training-project.git'
             }
         }
         stage('Terraform - Env Variables Access & Secret Keys:'){
